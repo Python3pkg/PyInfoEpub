@@ -14,7 +14,7 @@ PyInfoEpub
 
 PyInfoEpub helps you retrieve specific information from an epub file.
 
-* Free software: BSD license
+* Free software: GPLv3 license
 * Documentation: https://pyinfoepub.readthedocs.org.
 
 Features
