@@ -13,7 +13,7 @@ from xml.dom import minidom
 
 from pyinfoepub.src.parsers_epub import *
 
-# TESTS ARE BASED ON THIS SAMPLES
+# TESTS ARE BASED ON THESE SAMPLES
 OPF_SAMPLE_FILE = './samples/content.opf'
 NCX_SAMPLE_FILE = './samples/toc.ncx'
 
