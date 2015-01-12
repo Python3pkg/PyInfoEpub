@@ -75,7 +75,7 @@ class PyInfoEpub(object):
         content['main_subject'] = pob.change(ParserSubject).parse()
         content['description'] = pob.change(ParserDescription).parse()
         content['publisher'] = pob.change(ParserPublisher).parse()
-        content['date'] = pob.change(ParserDate).parse()
+        content['date'], content['event'] = pob.change(ParserDate).parse()
         content['type'] = pob.change(ParserType).parse()
         content['format'] = pob.change(ParserFormat).parse()
         content['subjects'], content['identifiers'] = pob.change(ParserIdentifier).parse()

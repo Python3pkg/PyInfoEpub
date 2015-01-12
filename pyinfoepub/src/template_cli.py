@@ -18,7 +18,7 @@ Creator:       {{CREATORS|c}}
 Main Subject:  {{MAIN_SUBJECT|c}}
 Description:   {{DESCRIPTION}}
 Publisher:     {{PUBLISHER}}
-Date:          {{DATE}}
+Date:          {{DATE}} {{EVENT}}
 Type:          {{TYPE}}
 Format:        {{FORMAT}}
 Subject(s):    {{SUBJECTS|c}}

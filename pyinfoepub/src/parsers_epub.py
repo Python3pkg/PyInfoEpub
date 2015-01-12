@@ -52,7 +52,7 @@ def ParserDate(obj):
     date = elem.childNodes[0].nodeValue if elem else ''
     event = elem.getAttribute("event") if elem else '' # optional    
     
-    return date + ' ' + event
+    return (date, event)
 
 def ParserType(obj):
     elem = obj.get_elem('type').item(0)
