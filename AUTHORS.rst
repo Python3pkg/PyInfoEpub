@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Cristian Năvălici <cristian.navalici@runbox.com>
+* Cristian Năvălici <cristian.navalici@gmail.com>
 
 Contributors
 ------------

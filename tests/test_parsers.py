@@ -11,20 +11,22 @@ Tests for parsers module
 import unittest
 from xml.dom import minidom
 
-from pyinfoepub.src.parsers_epub import *
+from pyinfoepub.src.parsers_epub import *  # NOQA
 
 # TESTS ARE BASED ON THESE SAMPLES
 OPF_SAMPLE_FILE = './samples/content.opf'
 NCX_SAMPLE_FILE = './samples/toc.ncx'
 
+
 class ParsersTest(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         with open(OPF_SAMPLE_FILE, 'r') as opf:
             cls.opf_content = minidom.parseString(opf.read())
         with open(NCX_SAMPLE_FILE, 'r') as ncx:
             cls.ncx = minidom.parseString(ncx.read())
-    
+
     def setUp(self):
         self.main_parser = Parser(self.opf_content, deprecated=False)
 
@@ -40,7 +42,7 @@ class ParsersTest(unittest.TestCase):
             pass
         returned = self.main_parser.change(dummy_parser)
         self.assertIsInstance(returned, Parser)
-        
+
     def test_main_parser_parse_method(self):
         def dummy_parser(obj):
             return obj
@@ -80,7 +82,7 @@ class ParsersTest(unittest.TestCase):
         returned = self.main_parser.change(ParserSubject).parse()
         self.assertIsInstance(returned, list)
         self.assertEqual(returned[0], 'Psychological fiction')
-        
+
     def test_parser_subject_return_empty_list_for_no_results(self):
         self.set_empty_content()
         returned = self.main_parser.change(ParserSubject).parse()
@@ -108,7 +110,7 @@ class ParsersTest(unittest.TestCase):
     def test_parser_type_should_return_string(self):
         returned = self.main_parser.change(ParserType).parse()
         self.assertEqual(returned, "")
-        
+
     # ParserFormat
     def test_parser_format_should_return_string(self):
         returned = self.main_parser.change(ParserFormat).parse()
@@ -120,15 +122,16 @@ class ParsersTest(unittest.TestCase):
         self.assertIsInstance(returned, tuple)
         self.assertIsInstance(returned[0], list)
         self.assertIsInstance(returned[1], list)
-        
+
     def test_parser_identifier_subject_element(self):
         returned = self.main_parser.change(ParserIdentifier).parse()[0]
-        self.assertEqual(returned, ['Psychological fiction', 'Metamorphosis -- Fiction'])
-    
+        self.assertEqual(
+            returned, ['Psychological fiction', 'Metamorphosis -- Fiction'])
+
     def test_parser_identifier_idents_element_is_list_of_dict(self):
         returned = self.main_parser.change(ParserIdentifier).parse()[1]
         self.assertEqual(len(returned), 2)
-        
+
         first_result = returned[0]
         self.assertIn('id', first_result)
         self.assertIn('ident', first_result)
@@ -136,9 +139,10 @@ class ParsersTest(unittest.TestCase):
 
     def test_parser_identifier_idents_element_proper_result(self):
         returned = self.main_parser.change(ParserIdentifier).parse()[1]
-        expected = {'id': 'id', 'ident': 'http://www.gutenberg.org/ebooks/5200', 'scheme': 'URI'}
-        
-        self.assertDictEqual(returned[0], expected)        
+        expected = {
+            'id': 'id', 'ident': 'http://www.gutenberg.org/ebooks/5200', 'scheme': 'URI'}
+
+        self.assertDictEqual(returned[0], expected)
 
     # ParserLanguage
     def test_parser_language_should_return_list(self):
@@ -150,7 +154,7 @@ class ParsersTest(unittest.TestCase):
     def test_parser_relation_should_return_string(self):
         returned = self.main_parser.change(ParserRelation).parse()
         self.assertEqual(returned, "")
-        
+
     # ParserCoverage
     def test_parser_coverage_should_return_string(self):
         returned = self.main_parser.change(ParserCoverage).parse()
@@ -159,75 +163,76 @@ class ParsersTest(unittest.TestCase):
     # ParserRights
     def test_parser_right_should_return_string(self):
         returned = self.main_parser.change(ParserRights).parse()
-        self.assertEqual(returned, "Copyrighted. Read the copyright notice inside this book for details.")
+        self.assertEqual(
+            returned, "Copyrighted. Read the copyright notice inside this book for details.")
 
     # ParserManifest
     def test_parser_manifest_should_return_list_of_dictionaries(self):
         returned = self.main_parser.change(ParserManifest).parse()
         self.assertIsInstance(returned, list)
         self.assertIsInstance(returned[0], dict)
-        
+
     def test_parser_manifest_proper_dictionary_structure(self):
         returned = self.main_parser.change(ParserManifest).parse()[0]
         self.assertIn('id', returned)
         self.assertIn('href', returned)
-        self.assertIn('media_type', returned)        
-    
+        self.assertIn('media_type', returned)
+
     def test_parser_manifest_proper_result(self):
         returned = self.main_parser.change(ParserManifest).parse()
         self.assertEqual(len(returned), 4)
-        
-        expected = {'media_type': 'text/css', 'id': 'item1', 'href': 'pgepub.css'}
+
+        expected = {
+            'media_type': 'text/css', 'id': 'item1', 'href': 'pgepub.css'}
         self.assertDictEqual(returned[0], expected)
-        
+
     # ParserTOC
     def test_parser_toc_should_return_list_of_dictionaries(self):
         self.main_parser.content = self.ncx
         returned = self.main_parser.change(ParserTOC).parse()
         self.assertIsInstance(returned, list)
         self.assertIsInstance(returned[0], dict)
-        
+
     def test_parser_toc_proper_dictionary_structure(self):
         self.main_parser.content = self.ncx
         returned = self.main_parser.change(ParserTOC).parse()[0]
         self.assertIn('order', returned)
-        self.assertIn('chapter', returned)        
-     
+        self.assertIn('chapter', returned)
+
     def test_parser_toc_proper_result(self):
         self.main_parser.content = self.ncx
         returned = self.main_parser.change(ParserTOC).parse()
         self.assertEqual(len(returned), 5)
-         
+
         expected = {'chapter': 'Metamorphosis Franz Kafka', 'order': '1'}
         self.assertDictEqual(returned[0], expected)
 
         expected = {'chapter': 'I', 'order': '3'}
         self.assertDictEqual(returned[2], expected)
-              
+
     def test_parser_subject(self):
         pass
 
     def tearDown(self):
         pass
 
-
     # Helpers
     def set_empty_content(self):
         """Setup an empty xml content for the main parser"""
-        self.main_parser.content = minidom.parseString("<?xml version='1.0' encoding='UTF-8'?><package></package>")
+        self.main_parser.content = minidom.parseString(
+            "<?xml version='1.0' encoding='UTF-8'?><package></package>")
 
     def revert_valid_content(self):
         self.main_parser.content = self.opf_content
 
 
-
-
 def buildTestSuite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
+
 
 def main():
     buildTestSuite()
     unittest.main()
-    
+
 if __name__ == "__main__":
     main()

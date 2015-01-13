@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
-import os
 import glob
+import os
+import sys
 import unittest
-
-#Allow us to import the parent module
+# Allow us to import the parent module
 os.chdir(os.path.split(os.path.abspath(__file__))[0])
 sys.path.insert(0, os.path.abspath(os.curdir))
 sys.path.insert(0, os.path.abspath(os.pardir))
 # sys.path.insert(0, os.path.join(os.path.abspath(os.pardir), "src"))
+
 
 def buildTestSuite():
     suite = unittest.TestSuite()
@@ -18,6 +18,7 @@ def buildTestSuite():
         module = os.path.splitext(testcase)[0]
         suite.addTest(__import__(module).buildTestSuite())
     return suite
+
 
 def main():
     results = unittest.TextTestRunner(verbosity=2).run(buildTestSuite())

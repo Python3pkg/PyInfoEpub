@@ -22,7 +22,7 @@ Date:          {{DATE}} {{EVENT}}
 Type:          {{TYPE}}
 Format:        {{FORMAT}}
 Subject(s):    {{SUBJECTS|c}}
-Identifier(s): 
+Identifier(s):
 {{IDENTIFIERS|c}}
 Language:     {{LANGUAGE|c}}
 Source:       {{SOURCE}}
@@ -41,27 +41,30 @@ TOC INFORMATION\n
 {SEP_LINE}
 """
 
+
 class TemplateCLI(object):
-    def __init__(self, content = {}):
+
+    def __init__(self, content={}):
         # we make sure we have all the keys UPPERCASE for content
         self.content = dict((k.upper(), v) for k, v in content.items())
         self.tpl = TEMPLATE
         self.placeholders = self.extract_placeholders(self.tpl)
 
-    def render(self, elements = {}):
+    def render(self, elements={}):
         self.render_separators()
         self.render_single_elements()
         self.render_complex_elements()
 
         print(self.tpl)
-        
+
     def render_single_elements(self):
         '''single placeholder is something as {{KEY}} without custom separator | '''
-        single_placeholders = [ph for ph in self.placeholders if ph.find("|") == -1]
+        single_placeholders = [
+            ph for ph in self.placeholders if ph.find("|") == -1]
         for sph in single_placeholders:
             key = sph.replace('{', '').replace('}', '')
             try:
-                replacement = self.content[key]                            
+                replacement = self.content[key]
             except KeyError:
                 replacement = ''
             finally:
@@ -78,26 +81,26 @@ class TemplateCLI(object):
             'MANIFEST': self.render_custom_manifest,
             'TOC': self.render_custom_toc
         }
-        
-        complex_placeholders = [ph for ph in self.placeholders if ph.find("|") != -1]
+
+        complex_placeholders = [
+            ph for ph in self.placeholders if ph.find("|") != -1]
         for cph in complex_placeholders:
             ckey = cph.replace('{', '').replace('}', '')
             key, complex_ident = ckey.split("|")
 
             try:
-                replacement = self.content[key]                            
+                replacement = self.content[key]
             except KeyError:
                 replacement = []
             finally:
                 mapper[key](cph, replacement)
-            
 
     def extract_placeholders(self, tpl):
         return re.findall('({{.*?}})', tpl)
 
     # GENERIC RENDERERS BELOW
     def render_separators(self):
-        self.tpl = self.tpl.replace("{SEP_LINE}", "="*50)
+        self.tpl = self.tpl.replace("{SEP_LINE}", "=" * 50)
 
     def render_list_elements(self, cph, replacement_lst):
         self.tpl = self.tpl.replace(cph, ", ".join(replacement_lst))
@@ -106,15 +109,17 @@ class TemplateCLI(object):
     def render_custom_identifiers(self, cph, replacement):
         content = []
         for r in replacement:
-            content.append("({0}:{1}) {2}".format(r['scheme'], r['ident'], r['id']))
+            content.append(
+                "({0}:{1}) {2}".format(r['scheme'], r['ident'], r['id']))
         self.tpl = self.tpl.replace(cph, "\n".join(content))
-    
+
     def render_custom_manifest(self, cph, replacement):
         content = []
         for r in replacement:
-            content.append("{0:20s} {1:35s} {2}".format(r['id'], r['media_type'], r['href']))
+            content.append(
+                "{0:20s} {1:35s} {2}".format(r['id'], r['media_type'], r['href']))
         self.tpl = self.tpl.replace(cph, "\n".join(content))
-    
+
     def render_custom_toc(self, cph, replacement):
         content = []
         for r in replacement:
