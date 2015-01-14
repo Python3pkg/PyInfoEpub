@@ -5,11 +5,12 @@ import glob
 import os
 import sys
 import unittest
+
 # Allow us to import the parent module
 os.chdir(os.path.split(os.path.abspath(__file__))[0])
 sys.path.insert(0, os.path.abspath(os.curdir))
 sys.path.insert(0, os.path.abspath(os.pardir))
-# sys.path.insert(0, os.path.join(os.path.abspath(os.pardir), "src"))
+sys.path.insert(0, os.path.join(os.path.abspath(os.pardir), "pyinfoepub"))
 
 
 def buildTestSuite():

@@ -25,8 +25,8 @@ setup(
     description='PyInfoEpub helps you retrieve specific information from an epub file.',
     long_description=readme + '\n\n' + history,
     author='Cristian Năvălici',
-    author_email='cristian.navalici@runbox.com',
-    url='https://github.com/cristianav/pyinfoepub',
+    author_email='cristian.navalici@gmail.com',
+    url='https://bitbucket.org/cnavalici/pyinfoepub',
     packages=[
         'pyinfoepub',
     ],
@@ -34,17 +34,16 @@ setup(
                  'pyinfoepub'},
     include_package_data=True,
     install_requires=requirements,
-    license="BSD",
+    license="GPLv3",
     zip_safe=False,
     keywords='pyinfoepub',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'Intended Audience :: Education',
+        'Intended Audience :: End Users/Desktop',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
@@ -52,3 +51,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements
 )
+
+
+# https://pypi.python.org/pypi?%3Aaction=list_classifiers

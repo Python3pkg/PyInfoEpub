@@ -11,7 +11,7 @@ Tests for parsers module
 import unittest
 from xml.dom import minidom
 
-from pyinfoepub.src.parsers_epub import *  # NOQA
+from parsers.parsers_epub import *  # NOQA
 
 # TESTS ARE BASED ON THESE SAMPLES
 OPF_SAMPLE_FILE = './samples/content.opf'

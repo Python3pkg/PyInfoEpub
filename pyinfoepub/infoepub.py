@@ -9,7 +9,7 @@ import re
 from xml.dom import minidom
 from zipfile import ZipFile
 
-from .parsers_epub import *  # NOQA
+from parsers.parsers_epub import *  # NOQA
 
 
 class PyInfoEpub(object):

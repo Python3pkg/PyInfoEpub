@@ -43,7 +43,7 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/cristianav/pyinfoepub/issues.
+The best way to send feedback is to file an issue at https://bitbucket.org/cnavalici/pyinfoepub.
 
 If you are proposing a feature:
 
