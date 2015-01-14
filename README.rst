@@ -6,16 +6,20 @@ PyInfoEpub
     :target: http://badge.fury.io/py/pyinfoepub
 
 .. image:: https://travis-ci.org/cristianav/pyinfoepub.png?branch=master
-        :target: https://travis-ci.org/cristianav/pyinfoepub
+    :target: https://travis-ci.org/cristianav/pyinfoepub
 
 .. image:: https://pypip.in/d/pyinfoepub/badge.png
-        :target: https://pypi.python.org/pypi/pyinfoepub
+    :target: https://pypi.python.org/pypi/pyinfoepub
 
 .. image:: http://img.shields.io/badge/license-GPLv3-yellow.svg
-        :target: http://opensource.org/licenses/GPL-3.0
+    :target: http://opensource.org/licenses/GPL-3.0
 
 .. image:: https://readthedocs.org/projects/pyinfoepub/badge/?version=latest
-        :target: http://pyinfoepub.readthedocs.org
+    :target: http://pyinfoepub.readthedocs.org
+        
+.. image:: https://coveralls.io/repos/cristianav/PyInfoEpub/badge.svg
+    :target: https://coveralls.io/r/cristianav/PyInfoEpub
+
 
 
 
