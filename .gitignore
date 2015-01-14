@@ -45,6 +45,4 @@ docs/_build
 *.bak
 .pypirc
 
-# coveralls
-.coveralls.yml
 
