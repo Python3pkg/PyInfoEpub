@@ -12,7 +12,7 @@ PyInfoEpub
         :target: https://pypi.python.org/pypi/pyinfoepub
 
 
-PyInfoEpub helps you retrieve specific information from an epub file.
+PyInfoEpub helps you retrieve specific information from an EPUB file.
 
 * Free software: GPLv3 license
 * Documentation: https://pyinfoepub.readthedocs.org.
@@ -20,4 +20,5 @@ PyInfoEpub helps you retrieve specific information from an epub file.
 Features
 --------
 
-* TODO
+* extracts the metainformation from an epub file
+* use fully customizable template engine to display this information

@@ -3,7 +3,7 @@
 
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
     from distutils.core import setup
 
@@ -27,11 +27,7 @@ setup(
     author='Cristian Năvălici',
     author_email='cristian.navalici@gmail.com',
     url='https://bitbucket.org/cnavalici/pyinfoepub',
-    packages=[
-        'pyinfoepub',
-    ],
-    package_dir={'pyinfoepub':
-                 'pyinfoepub'},
+    packages=find_packages(exclude=['tests*']),
     include_package_data=True,
     install_requires=requirements,
     license="GPLv3",

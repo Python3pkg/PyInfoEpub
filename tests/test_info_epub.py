@@ -11,7 +11,7 @@ Tests for info_epub module
 from io import BytesIO
 import unittest
 
-from infoepub import *  # NOQA
+from pyinfoepub.infoepub import PyInfoEpub
 
 # TESTS ARE BASED ON THIS SAMPLE
 EPUB_SAMPLE_FILE = './samples/Franz Kafka - Metamorphosis.epub'

@@ -2,11 +2,10 @@
 Installation
 ============
 
-At the command line::
+Use either::
 
     $ easy_install pyinfoepub
 
-Or, if you have virtualenvwrapper installed::
+or pip::
 
-    $ mkvirtualenv pyinfoepub
     $ pip install pyinfoepub

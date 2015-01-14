@@ -10,7 +10,7 @@ import unittest
 os.chdir(os.path.split(os.path.abspath(__file__))[0])
 sys.path.insert(0, os.path.abspath(os.curdir))
 sys.path.insert(0, os.path.abspath(os.pardir))
-sys.path.insert(0, os.path.join(os.path.abspath(os.pardir), "pyinfoepub"))
+# sys.path.insert(0, os.path.join(os.path.abspath(os.pardir), "pyinfoepub"))
 
 
 def buildTestSuite():

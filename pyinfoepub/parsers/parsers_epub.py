@@ -5,6 +5,9 @@ class Parser(object):
 
     def __init__(self, content, deprecated=False):
         self.deprecated_flag = deprecated
+        if not content:
+            raise Exception("Some content should be provided for Parser.")
+
         self.content = content
         self.parser = None
 
@@ -29,13 +32,15 @@ def ParserBookTitle(obj):
 
 
 def ParserCreator(obj):
-    creators = [e.childNodes[0].nodeValue for e in obj.get_elem('creator') if e]
+    creators = [
+        e.childNodes[0].nodeValue for e in obj.get_elem('creator') if e]
 
     return creators
 
 
 def ParserSubject(obj):
-    subjects = [e.childNodes[0].nodeValue for e in obj.get_elem('subject') if e]
+    subjects = [
+        e.childNodes[0].nodeValue for e in obj.get_elem('subject') if e]
 
     return subjects
 

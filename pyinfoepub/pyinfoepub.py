@@ -5,13 +5,15 @@ import argparse
 import os
 import sys
 
+
 def run_cli():
     base_dir = os.path.dirname(__file__) or '.'
     sys.path.insert(0, os.path.abspath(base_dir))
+    sys.path.insert(0, os.path.join(os.path.abspath(os.pardir), "pyinfoepub"))
 
     from infoepub import PyInfoEpub
     from templates.cli import TemplateCLI
-    
+
     parser = argparse.ArgumentParser(
         prog="PyInfoEpub", description='Extracts information from an epub file.')
     parser.add_argument('epub_file',
