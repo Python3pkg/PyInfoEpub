@@ -13,7 +13,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://bitbucket.org/cnavalici/pyinfoepub/issues.
+Report bugs at https://github.com/cristianav/PyInfoEpub/issues.
 
 If you are reporting a bug, please include:
 
@@ -24,13 +24,13 @@ If you are reporting a bug, please include:
 Fix Bugs
 ~~~~~~~~
 
-Look through the Bitbucket issues for bugs. Anything tagged with "bug"
+Look through the Github issues for bugs. Anything tagged with "bug"
 is open to whoever wants to implement it.
 
 Implement Features
 ~~~~~~~~~~~~~~~~~~
 
-Look through the Bitbucket issues for features. Anything tagged with "feature"
+Look through the Github issues for features. Anything tagged with "feature"
 is open to whoever wants to implement it.
 
 Write Documentation
@@ -60,7 +60,7 @@ Ready to contribute? Here's how to set up `pyinfoepub` for local development.
 1. Fork the `pyinfoepub` repo on GitHub.
 2. Clone your fork locally::
 
-    $ git clone git@bitbucket.com:your_name_here/pyinfoepub.git
+    $ git clone git@github.com:cristianav/PyInfoEpub.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 

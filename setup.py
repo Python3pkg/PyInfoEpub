@@ -26,7 +26,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Cristian Năvălici',
     author_email='cristian.navalici@gmail.com',
-    url='https://bitbucket.org/cnavalici/pyinfoepub',
+    url='https://github.com/cristianav/PyInfoEpub',
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
     install_requires=requirements,
