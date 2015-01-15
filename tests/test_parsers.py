@@ -31,8 +31,8 @@ class ParsersTest(unittest.TestCase):
         self.main_parser = Parser(self.opf_content, deprecated=False)
 
     # MAIN PARSER TESTS
-    def test_main_parser_no_content(self):
-        self.assertRaises(Exception, Parser)
+    def test_main_parser_no_content_raise_exception(self):
+        self.assertRaises(Exception, Parser, ())
     
     def test_main_parser_change(self):
         def dummy_parser():
@@ -152,6 +152,12 @@ class ParsersTest(unittest.TestCase):
         returned = self.main_parser.change(ParserLanguage).parse()
         self.assertIsInstance(returned, list)
         self.assertEqual(returned[0], 'en')
+
+    # ParserSource
+    def test_parser_source_should_return_string(self):
+        returned = self.main_parser.change(ParserSource).parse()
+        self.assertEqual(returned, 'http://www.gutenberg.orgfiles/5200/5200-h/5200-h.htm')
+
 
     # ParserRelation
     def test_parser_relation_should_return_string(self):
