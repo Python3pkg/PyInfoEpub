@@ -17,8 +17,8 @@ PyInfoEpub
 .. image:: https://readthedocs.org/projects/pyinfoepub/badge/?version=latest
     :target: http://pyinfoepub.readthedocs.org
         
-.. image:: https://coveralls.io/repos/cristianav/PyInfoEpub/badge.svg
-    :target: https://coveralls.io/r/cristianav/PyInfoEpub
+.. image:: https://coveralls.io/repos/cristianav/PyInfoEpub/badge.svg?branch=master
+  :target: https://coveralls.io/r/cristianav/PyInfoEpub?branch=master
 
 
 
