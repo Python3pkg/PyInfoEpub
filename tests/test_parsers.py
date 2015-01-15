@@ -31,6 +31,9 @@ class ParsersTest(unittest.TestCase):
         self.main_parser = Parser(self.opf_content, deprecated=False)
 
     # MAIN PARSER TESTS
+    def test_main_parser_no_content(self):
+        self.assertRaises(Exception, Parser)
+    
     def test_main_parser_change(self):
         def dummy_parser():
             pass
