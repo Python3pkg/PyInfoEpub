@@ -11,7 +11,7 @@ install:
     - pip install -r requirements.txt
 
 # command to run tests, e.g. python setup.py test
-script: python setup.py test --with-coverage
+script: python setup.py test
 
 branches:
     only:
