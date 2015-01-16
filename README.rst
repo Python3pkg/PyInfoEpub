@@ -23,6 +23,7 @@ PyInfoEpub
 
 
 
+
 PyInfoEpub helps you retrieve specific information from an EPUB file.
 
 * Free software: GPLv3 license

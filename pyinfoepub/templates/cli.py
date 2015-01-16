@@ -44,10 +44,10 @@ TOC INFORMATION\n
 
 class TemplateCLI(object):
 
-    def __init__(self, content={}):
+    def __init__(self, content={}, template=None):
         # we make sure we have all the keys UPPERCASE for content
         self.content = dict((k.upper(), v) for k, v in content.items())
-        self.tpl = TEMPLATE
+        self.tpl = template if template else TEMPLATE
         self.placeholders = self.extract_placeholders(self.tpl)
 
     def render(self, elements={}):
@@ -59,8 +59,7 @@ class TemplateCLI(object):
 
     def render_single_elements(self):
         '''single placeholder is something as {{KEY}} without custom separator | '''
-        single_placeholders = [
-            ph for ph in self.placeholders if ph.find("|") == -1]
+        single_placeholders = [ph for ph in self.placeholders if ph.find("|") == -1]
         for sph in single_placeholders:
             key = sph.replace('{', '').replace('}', '')
             try:
@@ -82,8 +81,7 @@ class TemplateCLI(object):
             'TOC': self.render_custom_toc
         }
 
-        complex_placeholders = [
-            ph for ph in self.placeholders if ph.find("|") != -1]
+        complex_placeholders = [ph for ph in self.placeholders if ph.find("|") != -1]
         for cph in complex_placeholders:
             ckey = cph.replace('{', '').replace('}', '')
             key, complex_ident = ckey.split("|")
@@ -109,15 +107,13 @@ class TemplateCLI(object):
     def render_custom_identifiers(self, cph, replacement):
         content = []
         for r in replacement:
-            content.append(
-                "({0}:{1}) {2}".format(r['scheme'], r['ident'], r['id']))
+            content.append("({0}:{1}) {2}".format(r['scheme'], r['ident'], r['id']))
         self.tpl = self.tpl.replace(cph, "\n".join(content))
 
     def render_custom_manifest(self, cph, replacement):
         content = []
         for r in replacement:
-            content.append(
-                "{0:20s} {1:35s} {2}".format(r['id'], r['media_type'], r['href']))
+            content.append("{0:20s} {1:35s} {2}".format(r['id'], r['media_type'], r['href']))
         self.tpl = self.tpl.replace(cph, "\n".join(content))
 
     def render_custom_toc(self, cph, replacement):
