@@ -92,6 +92,99 @@ class TemplateCliTest(unittest.TestCase):
 
         self.assertEqual(tcli.tpl, out_template)
 
+    def test_render_custom_manifest(self):
+        template = """REPLACE"""
+        out_template = \
+            "some_id              MediaType1                          http://example.com\n" \
+            "some_id              MediaType2                          http://example.com"
+        
+        cph = "REPLACE"
+        replacement = [
+            {'media_type':'MediaType1', 'href':'http://example.com', 'id':'some_id'},
+            {'media_type':'MediaType2', 'href':'http://example.com', 'id':'some_id'}
+        ]
+        
+        tcli = TemplateCLI({}, template)
+        tcli.render_custom_manifest(cph, replacement)
+
+        self.assertEqual(tcli.tpl, out_template)
+
+    def test_render_custom_toc(self):
+        template = """REPLACE"""
+        out_template = \
+            "    1 Chapter I                          \n" \
+            "    2 Chapter II                         "
+            
+        cph = "REPLACE"
+        replacement = [
+            {'order':'1', 'chapter':'Chapter I'},
+            {'order':'2', 'chapter':'Chapter II'}
+        ]
+        
+        tcli = TemplateCLI({}, template)
+        tcli.render_custom_toc(cph, replacement)
+
+        self.assertEqual(tcli.tpl, out_template)
+
+    def test_render_complex_element(self):
+        template = \
+            "Creator:       {{CREATORS|c}}\n" \
+            "Main Subject:  {{MAIN_SUBJECT|c}}\n" \
+            "Subject(s):    {{SUBJECTS|c}}\n" \
+            "Identifier(s):\n" \
+            "{{IDENTIFIERS|c}}\n" \
+            "Language:     {{LANGUAGE|c}}\n" \
+            "FILES INFORMATION\n" \
+            "{{MANIFEST|c}}\n" \
+            "TOC INFORMATION\n" \
+            "{{TOC|c}}"
+
+        out_template = \
+            "Creator:       Franz Kafka\n" \
+            "Main Subject:  Psychological fiction, Metamorphosis -- Fiction\n" \
+            "Subject(s):    Psychological fiction, Metamorphosis -- Fiction\n" \
+            "Identifier(s):\n" \
+            "(URI:http://www.gutenberg.org/ebooks/5200) id\n" \
+            "Language:     en\n" \
+            "FILES INFORMATION\n" \
+            "item1                text/css                            pgepub.css\n" \
+            "TOC INFORMATION\n" \
+            "    1 Metamorphosis Franz Kafka          \n" \
+            "    2 Translated by David Wyllie         "
+                    
+        input_content = {
+            'creators': ['Franz Kafka'], 
+            'main_subject': ['Psychological fiction', 'Metamorphosis -- Fiction'],
+            'subjects': ['Psychological fiction', 'Metamorphosis -- Fiction'],
+            'identifiers': [{'scheme': 'URI', 'ident': 'http://www.gutenberg.org/ebooks/5200', 'id': 'id'}],
+            'language': ['en'],
+            'manifest': [{'href': 'pgepub.css', 'media_type': 'text/css', 'id': 'item1'}],
+            'toc': [{'order': '1', 'chapter': 'Metamorphosis Franz Kafka'}, {'order': '2', 'chapter': 'Translated by David Wyllie'}],
+            }
+        
+        tcli = TemplateCLI(input_content, template)
+        tcli.render_complex_elements()
+
+        self.assertEqual(tcli.tpl, out_template)
+
+    def test_render_complex_element_missing_content_key(self):
+        template = "Missing input for this placeholder:{{LANGUAGE|c}}"
+
+        out_template = "Missing input for this placeholder:"
+        
+        tcli = TemplateCLI({}, template)
+        tcli.render_complex_elements()
+
+        self.assertEqual(tcli.tpl, out_template)
+
+    def test_render_complex_element_invalid_placeholder(self):
+        template = "Invalid Placeholder: {{INVALID_PLACEHOLDER|c}}"
+
+        tcli = TemplateCLI({}, template)
+        
+        self.assertRaises(KeyError, tcli.render_complex_elements)
+
+
     def tearDown(self):
         pass
 
