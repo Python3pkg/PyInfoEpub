@@ -9,7 +9,7 @@ import re
 from xml.dom import minidom
 from zipfile import ZipFile
 
-from pyinfoepub.parsers.parsers_epub import *  # NOQA
+from .pyinfoepub.parsers.parsers_epub import *  # NOQA
 
 
 class PyInfoEpub(object):
@@ -55,7 +55,7 @@ class PyInfoEpub(object):
         '''NCX file tells the sequence and organization
         (parts, chapters or sections) of XHTML documents in a book.'''
         reslist = [
-            f for f in self.epub_content.keys() if re.match(r'.*\/.*\.ncx$', f)]
+            f for f in list(self.epub_content.keys()) if re.match(r'.*\/.*\.ncx$', f)]
         ncx_filename = reslist[0] if reslist else False
 
         self.ncx = minidom.parseString(

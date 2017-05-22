@@ -64,7 +64,7 @@ class InfoEpubTest(unittest.TestCase):
 
     def test_unzip_should_produce_dict_of_bytes(self):
         self.info_epub.unzip()
-        for k, v in self.info_epub.epub_content.items():
+        for k, v in list(self.info_epub.epub_content.items()):
             self.assertIsInstance(v, BytesIO)
 
     def test_unzip_invalid_filename(self):

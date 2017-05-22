@@ -46,7 +46,7 @@ class TemplateCLI(object):
 
     def __init__(self, content={}, template=None):
         # we make sure we have all the keys UPPERCASE for content
-        self.content = dict((k.upper(), v) for k, v in content.items())
+        self.content = dict((k.upper(), v) for k, v in list(content.items()))
         self.tpl = template if template else TEMPLATE
         self.placeholders = self.extract_placeholders(self.tpl)
 
@@ -55,7 +55,7 @@ class TemplateCLI(object):
         self.render_single_elements()
         self.render_complex_elements()
 
-        print(self.tpl)
+        print((self.tpl))
 
     def render_single_elements(self):
         '''single placeholder is something as {{KEY}} without custom separator | '''
